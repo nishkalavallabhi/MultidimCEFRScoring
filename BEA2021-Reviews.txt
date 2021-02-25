@@ -1,0 +1,147 @@
+============================================================================ 
+BEA 2021 Reviews for Submission #33
+============================================================================ 
+
+Title: Are pre-trained text representations useful for multilingual and multi-dimensional language proficiency modeling?
+Authors: Taraka Rama and Sowmya Vajjala
+
+
+============================================================================
+                            REVIEWER #1
+============================================================================
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+                   Appropriateness (1-5): 3
+                           Clarity (1-5): 2
+      Originality / Innovativeness (1-5): 2
+           Soundness / Correctness (1-5): 3
+             Meaningful Comparison (1-5): 1
+                      Thoroughness (1-5): 2
+        Impact of Ideas or Results (1-5): 2
+                    Recommendation (1-5): 2
+               Reviewer Confidence (1-5): 4
+
+Detailed Comments
+---------------------------------------------------------------------------
+The paper reports on experiments investigating the role of pre-trained and fine-tuned multilingual embeddings in the classification of language proficiency in three languages: German, Italian, and Czech. Seven dimensions of fluency are considered, ranging from vocabulary control to sociolinguistic appropriateness.
+According to the authors, a closely related work to their own is that of Vajjala and Rama (2018). The authors should have included a review of more recent studies published in the context of a recent shared task based on Vajjala and Rama (2018): Language Proficiency Scoring on the
+LREC 2020 - REPROLANG Task D.2 https://lrec2020.lrecconf.org/en/reprolang2020/selected-tasks/
+
+In general, the section on related work does not provide a systematic review of previous studies in terms of features investigated, classifiers employed and, importantly, the results of classification experiments. Otherwise, it is difficult to assess the contribution of the present work to the existing literature. The results suggest that individual feature groups do not capture multiple dimensions of language performance well. This result is hardly surprising, since the feature groups studied cannot be expected to capture, for example, variation in orthography, grammatical correctness, and sociolinguistic appropriateness equally well. 
+
+The finding that there is no single feature group that works equally well across languages is difficult to interpret: Clearly, the study was not designed to examine a motivated, comprehensive set of features, but instead its main focus is  the possible role of embeddings. 
+
+The finding that there is no single feature group that works equally well across languages is difficult to interpret: Clearly, the study was not designed to examine a motivated, comprehensive set of features, but instead its main focus is  the possible role of embeddings.
+
+An analysis of the role of multilingual embeddings is evaluated solely by comparing the global classification performance of classifiers based on different feature sets. Such an approach does not provide information on the extent to which different feature sets complement each other (or capture similar regularities in the data), nor does it reveal possible interaction effects between features. Answering the question about the role of embedding in CEFR-level classification would therefore have benefited greatly from more sophisticated approaches to identifying feature importance, such as feature ablation experiments.
+---------------------------------------------------------------------------
+
+
+
+============================================================================
+                            REVIEWER #2
+============================================================================
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+                   Appropriateness (1-5): 4
+                           Clarity (1-5): 4
+      Originality / Innovativeness (1-5): 4
+           Soundness / Correctness (1-5): 3
+             Meaningful Comparison (1-5): 3
+                      Thoroughness (1-5): 4
+        Impact of Ideas or Results (1-5): 4
+                    Recommendation (1-5): 4
+               Reviewer Confidence (1-5): 3
+
+Detailed Comments
+---------------------------------------------------------------------------
+The authors propose multi-dimensional modeling for language proficiency for German, Italian, and Czech. They utilize multilingual embeddings from multilingual pre-trained models. They also attempt to construct a universal model to evaluate language proficiency. They found that the multilingual embeddings are not very useful in their task.
+
+The problem is interesting and clearly stated, and the methodology is convincing. The writing is easy to follow. The authors only demonstrate their evaluation by figures, making it hard to precisely examine each model's performance.  Plus, I am wondering how the multilingual model will perform in monolingual data. My biggest concern is that the embedding dimensions from the pre-trained are larger than the sample size. This could potentially lead to a bad regression model with high accuracy. Have you ever check the precision and recall per label? If your class distribution is screwed, then the test results could also look good, but the model is meaningless. Have you ever tried to compare your model with a random guessing baseline?
+---------------------------------------------------------------------------
+
+
+Questions for Authors
+---------------------------------------------------------------------------
+Is it possible to compare each feature set across different models, including a random guessing baseline?
+---------------------------------------------------------------------------
+
+
+
+============================================================================
+                            REVIEWER #3
+============================================================================
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+                   Appropriateness (1-5): 5
+                           Clarity (1-5): 4
+      Originality / Innovativeness (1-5): 3
+           Soundness / Correctness (1-5): 4
+             Meaningful Comparison (1-5): 4
+                      Thoroughness (1-5): 4
+        Impact of Ideas or Results (1-5): 4
+                    Recommendation (1-5): 4
+               Reviewer Confidence (1-5): 4
+
+Detailed Comments
+---------------------------------------------------------------------------
+This paper presents a timely study of whether multilingual pretrained
+models are useful for multilingual language proficiency
+estimation. In particular, the paper shows that fine-tuning
+multilingual BERT achieves performance that meets or slightly exceeds
+using POS n-grams as features in logistic regression across most
+dimensions for Czech, German and Italian.  It also shows that overall
+proficiency is easier to classify than the various dimensions of
+language proficiency that have been proposed.
+
+The paper could have been stronger had it pursued any of the
+following:
+
+* Combinations of traditional discrete features such as word and POS
+  n-grams together with dependency triples
+
+* Other multilingual models such as XLM-R, which has shown better
+  performance for low resource languages for several NLP tasks
+
+* Comparative error analysis for n-grams versus mBERT to better
+  understand the relative strengths and weaknesses of these methods
+
+* More discussion of ways in which multilingual models might be
+  improved for language proficiency modeling
+
+Re the latter point, there is potential synergy with work on automatic
+evaluation of language generation systems, where methods for creating
+synthetic errors have been crucial, as it would be an interesing
+challenge to adapt such methods to the various dimensions of language
+proficiency.  Two papers of note here include BLEURT
+(https://www.aclweb.org/anthology/2020.acl-main.704/) and the semantic
+fidelity classifier in this paper
+(https://www.aclweb.org/anthology/2020.coling-main.218/).
+
+It was also unclear to this reviewer why language proficiency
+assessment was treated as a classification task, as it would seem to
+more naturally be treated as an ordinal regression task.  It is not
+clear whether treating the tasks this way would have made a
+difference, since all methods were used in a classification
+setup. However, it could be that some methods make less severe errors
+than others, which would not show up in the quantitative results
+presented in the paper: that is, as the authors note in Section 4.4,
+it is harder for the models to distinguish proximal proficiency levels
+than more distant ones, but at the same time, more distant
+misclassification errors should be penalized more severely in
+evaluating a model's performance.
+
+The paper is generally well-written. Two minor comments:
+
+* The sentence around line 182 uses two colons, which is at minimum a
+  stylistic error, and actually argued to be ungrammatical in
+  Nunberg's book on punctuation.
+
+* The clause on line 606 is missing a verb.
+---------------------------------------------------------------------------
