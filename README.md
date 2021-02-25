@@ -1,3 +1,11 @@
+This repo contains the code, results, and paper for:
+
+# Are pre-trained text representations useful for multilingual and multi-dimensional language proficiency modeling?
+
+Reviews for the paper at BEA 2021 are also in the repo in reviews.txt.
+
+Since we don't intend to resubmit the paper, we are leaving this version here, for anyone interested in using the code for pursuing related research.
+
 
 About the folders: 
   
