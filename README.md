@@ -2,14 +2,12 @@ This repo contains the code, results, and paper for:
 
 # Are pre-trained text representations useful for multilingual and multi-dimensional language proficiency modeling?
 
-Reviews for the paper at BEA 2021 are also in the repo in reviews.txt.
+**Abstract:**  
+Development of language proficiency models for non-native learners has been an active area of interest in NLP research for the past few years. Although language proficiency is multidimensional in nature, existing research typically considers a single *overall proficiency* while building models. Further, existing approaches also considers only one language at a time. This paper describes our experiments and observations about the role of pre-trained and fine-tuned multilingual embeddings in performing multi-dimensional, multilingual language proficiency classification. We report experiments with three languages -- German, Italian, and Czech -- and model seven dimensions of proficiency ranging from vocabulary control to sociolinguistic appropriateness. Our results indicate that while fine-tuned embeddings are useful for multilingual proficiency modeling, none of the features achieve consistently best performance for all dimensions of language proficiency.
 
-Since we don't intend to resubmit the paper, we are leaving this version here, for anyone interested in using the code for pursuing related research. 
-We may upload a version of the paper addressing reviewer concerns in future.
+Reviews for the paper from [BEA 2021](https://sig-edu.org/bea/current) are also in the repo. Since we don't intend to resubmit the paper, we are leaving this version here, for anyone interested in using the code (the version submitted as supplementary material for the submission) for pursuing related research.  We may upload a version of the paper addressing reviewer concerns in future.
 
-
-
-About the folders: 
+**About the folders: **
   
 - **Dataset/:**  
   * This contains folders with learner corpora for three languages(German-DE, Italian-IT, Czech-CZ), from [MERLIN project](http://www.merlin-platform.eu/), and their dependency parsed versions (DE-Parsed, IT-Parsed, CZ-Parsed) using [UDPipe](http://ufal.mff.cuni.cz/udpipe).  
