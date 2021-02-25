@@ -4,7 +4,9 @@ This repo contains the code, results, and paper for:
 
 Reviews for the paper at BEA 2021 are also in the repo in reviews.txt.
 
-Since we don't intend to resubmit the paper, we are leaving this version here, for anyone interested in using the code for pursuing related research.
+Since we don't intend to resubmit the paper, we are leaving this version here, for anyone interested in using the code for pursuing related research. 
+We may upload a version of the paper addressing reviewer concerns in future.
+
 
 
 About the folders: 
