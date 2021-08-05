@@ -41,8 +41,11 @@ else:
 
 
 from transformers import *
-bert_model_name = "bert-base-multilingual-cased"
-tokenizer = BertTokenizer.from_pretrained(bert_model_name) 
+#model_name = "bert-base-multilingual-cased"
+model_name = "xlm-roberta-base"
+
+#tokenizer = BertTokenizer.from_pretrained(model_name) 
+tokenizer = XLMRobertaTokenizer.from_pretrained(model_name)
 
 seed_val = 1234
 
@@ -245,7 +248,7 @@ def crosslingual(dimension, language):
     print()
 
 def train_test(train_data, train_labels, test_data, test_labels, epochs=4, nr_labels=5):
-    tokenizer = BertTokenizer.from_pretrained(bert_model_name) 
+    tokenizer = tokenizer 
 
     # Tokenize all of the sentences and map the tokens to thier word IDs.
     input_ids = []
@@ -325,9 +328,9 @@ def train_test(train_data, train_labels, test_data, test_labels, epochs=4, nr_la
 # 4. Train Our Classification Model
 
     from transformers import BertForSequenceClassification, AdamW, BertConfig
-
-    model = BertForSequenceClassification.from_pretrained(
-        bert_model_name, # Use the 12-layer BERT model, with an uncased vocab.
+    from transformers import XLMRobertaForSequenceClassification 
+    model = XLMRobertaForSequenceClassification.from_pretrained(
+        model_name, # Use the 12-layer BERT model, with an uncased vocab.
         num_labels = nr_labels, # The number of output labels--2 for binary classification.
                         # You can increase this for multi-class tasks.   
         output_attentions = False, # Whether the model returns attentions weights.
