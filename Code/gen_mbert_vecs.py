@@ -1,8 +1,11 @@
 import torch
 from transformers import *
-tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased') 
-model = BertModel.from_pretrained('bert-base-multilingual-cased', output_hidden_states=True)
-
+#tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased') 
+#model = BertModel.from_pretrained('bert-base-multilingual-cased', output_hidden_states=True)
+ 
+tokenizer = XLMRobertaTokenizer.from_pretrained('xlm-roberta-base')
+model = XLMRobertaModel.from_pretrained('xlm-roberta-base', output_hidden_states=True)
+outputfile = "../xlmr_last_layer_CLS_token.out"
 
 import glob
 
@@ -11,7 +14,7 @@ dir_names = ["DE", "CZ", "IT"]
 maxlen = 400
 nr_sents_clip = 0
 
-with open("../bert_last_layer_CLS_token.out", "w") as fw:
+with open(outputfile, "w") as fw:
     with torch.no_grad(): #remove gradient computation
         for lang_name in dir_names:
             data_dir = "../Datasets/"+lang_name
