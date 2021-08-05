@@ -11,7 +11,6 @@ Original file is located at
     https://colab.research.google.com/drive/1PHv-IRLPCtv7oTcIGbsgZHqrB5LPvB7S#scrollTo=mUKLyKc7I6Qp
 """
 
-import tensorflow as tf
 import numpy as np
 import random, time
 from sklearn.model_selection import StratifiedKFold 
@@ -20,9 +19,11 @@ from collections import defaultdict
 from sklearn.metrics import confusion_matrix, classification_report, f1_score
 
 # Get the GPU device name.
-device_name = tf.test.gpu_device_name()
+#device_name = tf.test.gpu_device_name()
 
 import torch
+
+cache_dir = '/home/vaj001/.cache/huggingface/transformers/'
 
 # If there's a GPU available...
 if torch.cuda.is_available():    
@@ -45,7 +46,7 @@ from transformers import *
 model_name = "xlm-roberta-base"
 
 #tokenizer = BertTokenizer.from_pretrained(model_name) 
-tokenizer = XLMRobertaTokenizer.from_pretrained(model_name)
+mytokenizer = XLMRobertaTokenizer.from_pretrained(model_name, cache_dir=cache_dir, local_files_only=True)
 
 seed_val = 1234
 
@@ -248,7 +249,7 @@ def crosslingual(dimension, language):
     print()
 
 def train_test(train_data, train_labels, test_data, test_labels, epochs=4, nr_labels=5):
-    tokenizer = tokenizer 
+    tokenizer = mytokenizer 
 
     # Tokenize all of the sentences and map the tokens to thier word IDs.
     input_ids = []
@@ -335,6 +336,9 @@ def train_test(train_data, train_labels, test_data, test_labels, epochs=4, nr_la
                         # You can increase this for multi-class tasks.   
         output_attentions = False, # Whether the model returns attentions weights.
         output_hidden_states = False, # Whether the model returns all hidden-states.
+        cache_dir=cache_dir,
+        local_files_only=True,
+        return_dict=False,
     )
 
     model.cuda()
