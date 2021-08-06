@@ -438,19 +438,23 @@ def train_test(train_data, train_labels, test_data, test_labels, epochs=4, nr_la
         avg_val_loss = total_eval_loss / len(validation_dataloader)
 
         print("  Average evaluation loss: {0:.2f}".format(avg_val_loss))
-        
+
         print(classification_report(true_labels, predictions))
         print(confusion_matrix(true_labels, predictions))
 
         weighted_f1_score = f1_score(true_labels,predictions,average='weighted')
         print(weighted_f1_score)
-
+        print(len(true_labels), len(predictions), len(test_labels))
         if epoch_i == epochs-1:            
+            print("Filename", "True Label", "Prediction", sep="\t")
+            for FNAME, TRUE_LABEL, PRED in zip(list(test_data.keys()), true_labels, predictions):
+                print(FNAME, TRUE_LABEL, PRED, sep="\t")
             return weighted_f1_score
                         
         print()
         print()
 
+"""
 print("SINGLE LANGUAGE/ MONOLINGUAL EXPERIMENTS")
 
 for dimension in dimensions:
@@ -462,12 +466,12 @@ print("SINGLE LANGUAGE/ MONOLINGUAL EXPERIMENTS")
 for lang_name in dir_names:
     for dimension in dimensions:
         monolingual(lang_name, dimension=dimension)
-
+"""
 print("MULTILINGUAL EXPERIMENTS")
 
-for dimension in dimensions:
-    multilingual(dimension)
+#for dimension in dimensions:
+#    multilingual(dimension)
     
-    
+multilingual("OverallCEFRrating")   
     
    
