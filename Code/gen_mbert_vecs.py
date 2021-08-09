@@ -1,17 +1,28 @@
 import torch
 from transformers import *
-#tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased') 
-#model = BertModel.from_pretrained('bert-base-multilingual-cased', output_hidden_states=True)
- 
-tokenizer = XLMRobertaTokenizer.from_pretrained('xlm-roberta-base')
-model = XLMRobertaModel.from_pretrained('xlm-roberta-base', output_hidden_states=True)
-outputfile = "../xlmr_last_layer_CLS_token.out"
+import sys
+
+setup = sys.argv[1]
+
+if setup == 'mbert':
+    tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased') 
+    model = BertModel.from_pretrained('bert-base-multilingual-cased', output_hidden_states=True)
+    outputfile = "../mbert_last_layer_CLS_token.out"
+
+elif setup == 'xlmr':
+    tokenizer = XLMRobertaTokenizer.from_pretrained('xlm-roberta-base')
+    model = XLMRobertaModel.from_pretrained('xlm-roberta-base', output_hidden_states=True)
+    outputfile = "../xlmr_last_layer_CLS_token.out"
+
+else:
+    print("Wrong setup")
+    exit(1)
 
 import glob
 
 dir_names = ["DE", "CZ", "IT"]
 
-maxlen = 400
+maxlen = 512
 nr_sents_clip = 0
 
 with open(outputfile, "w") as fw:

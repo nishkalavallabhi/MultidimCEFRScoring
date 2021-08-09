@@ -8,7 +8,7 @@ filename = sys.argv[1]
 fh = open(filename)
 
 for line in fh:
-  temp = line.split(" ")
+  temp = line.split("\t")
   actual.append(float(temp[1]))
   predicted.append(float(temp[2]))
 

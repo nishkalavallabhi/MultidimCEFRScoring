@@ -260,7 +260,7 @@ def train_test(train_data, train_labels, test_data, test_labels, epochs=4, nr_la
         encoded_dict = tokenizer.encode_plus(
                             text,                      # Sentence to encode.
                             add_special_tokens = True, # Add '[CLS]' and '[SEP]'
-                            max_length = 400,           # Pad & truncate all sentences.
+                            max_length = 512,           # Pad & truncate all sentences.
                             pad_to_max_length = True,
                             return_attention_mask = True,   # Construct attn. masks.
                             return_tensors = 'pt',     # Return pytorch tensors.
@@ -454,24 +454,26 @@ def train_test(train_data, train_labels, test_data, test_labels, epochs=4, nr_la
         print()
         print()
 
-"""
-print("SINGLE LANGUAGE/ MONOLINGUAL EXPERIMENTS")
+
+print("CROSSLINGUAL EXPERIMENTS")
 
 for dimension in dimensions:
     for language in ["CZ", "IT"]:
+        print("Train on DE, test on ", language)
         crosslingual(dimension, language)
 
-print("SINGLE LANGUAGE/ MONOLINGUAL EXPERIMENTS")
+print("MONOLINGUAL EXPERIMENTS")
 
 for lang_name in dir_names:
+    print("MONOLINGUAL Experiments with: ", lang_name)
     for dimension in dimensions:
         monolingual(lang_name, dimension=dimension)
-"""
+
 print("MULTILINGUAL EXPERIMENTS")
 
-#for dimension in dimensions:
-#    multilingual(dimension)
+for dimension in dimensions:
+    multilingual(dimension)
     
-multilingual("OverallCEFRrating")   
+#multilingual("OverallCEFRrating")   
     
    
